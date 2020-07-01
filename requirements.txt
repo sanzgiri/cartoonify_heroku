@@ -1,0 +1,4 @@
+tensorflow==1.15
+scikit-image==0.14.5
+opencv-python
+streamlit
