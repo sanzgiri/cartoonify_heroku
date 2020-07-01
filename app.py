@@ -167,7 +167,7 @@ def main():
     if infile is not None:
         image = Image.open(infile)
         st.image(image, caption=f'Your image: {infile}', use_column_width=True)
-        cartoonize(infile, outfile, model_path)
+        cartoonize(image, outfile, model_path)
 
         omage = Image.open(outfile)
         st.image(omage, caption=f'Cartoonized version: {outfile}', use_column_width=True)
