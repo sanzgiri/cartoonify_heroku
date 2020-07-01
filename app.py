@@ -113,7 +113,7 @@ def unet_generator(inputs, channel=32, num_blocks=4, name='generator', reuse=Fal
 
 
 def resize_crop(image):
-    h, w, c = np.shape(image)
+    h, wm, c = np.shape(image)
     if min(h, w) > 720:
         if h > w:
             h, w = int(720 * h / w), 720
@@ -143,9 +143,9 @@ def cartoonize(infile, outfile, model_path):
     sess.run(tf.global_variables_initializer())
     saver.restore(sess, tf.train.latest_checkpoint(model_path))
 
-    #image = cv2.imread(infile)
-    image = infile
-    image = resize_crop(image)
+    image = cv2.imread(infile)
+    #image = infile
+    #image = resize_crop(image)
     batch_image = image.astype(np.float32) / 127.5 - 1
     batch_image = np.expand_dims(batch_image, axis=0)
     output = sess.run(final_out, feed_dict={input_photo: batch_image})
@@ -166,7 +166,7 @@ def main():
 
     if infile is not None:
         image = Image.open(infile)
-        st.image(image, caption=f'Your image: {infile}', use_column_width=True)
+        st.image(image, caption=f'Your image', use_column_width=True)
         cartoonize(image, outfile, model_path)
 
         omage = Image.open(outfile)
