@@ -143,7 +143,8 @@ def cartoonize(infile, outfile, model_path):
     sess.run(tf.global_variables_initializer())
     saver.restore(sess, tf.train.latest_checkpoint(model_path))
 
-    image = cv2.imread(infile)
+    #image = cv2.imread(infile)
+    image = infile
     image = resize_crop(image)
     batch_image = image.astype(np.float32) / 127.5 - 1
     batch_image = np.expand_dims(batch_image, axis=0)
