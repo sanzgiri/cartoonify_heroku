@@ -122,11 +122,11 @@ def resize_crop(image):
             h, w = 720, int(720 * w / h)
     w = int(w / 2)
     h = int(h / 2)
-    #st.image(image, caption=f'Your image', width=w)
+    st.image(image, caption=f'Your image', width=w)
     image = cv2.resize(np.float32(image), (w, h),
                        interpolation=cv2.INTER_AREA)
     h, w = (h // 8) * 8, (w // 8) * 8
-    st.write(h,w)
+    #st.write(h,w)
     image = image[:h, :w, :]
     return image
 
