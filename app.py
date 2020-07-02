@@ -114,14 +114,19 @@ def unet_generator(inputs, channel=32, num_blocks=4, name='generator', reuse=Fal
 
 def resize_crop(image):
     h, w, c = np.shape(image)
+    #st.write(h, w, c)
     if min(h, w) > 720:
         if h > w:
             h, w = int(720 * h / w), 720
         else:
             h, w = 720, int(720 * w / h)
+    w = int(w / 2)
+    h = int(h / 2)
+    #st.image(image, caption=f'Your image', width=w)
     image = cv2.resize(np.float32(image), (w, h),
                        interpolation=cv2.INTER_AREA)
     h, w = (h // 8) * 8, (w // 8) * 8
+    st.write(h,w)
     image = image[:h, :w, :]
     return image
 
@@ -166,11 +171,11 @@ def main():
 
     if infile is not None:
         image = Image.open(infile)
-        st.image(image, caption=f'Your image', use_column_width=True)
+        #st.image(image, caption=f'Your image', use_column_width=True)
         cartoonize(image, outfile, model_path)
 
         omage = Image.open(outfile)
-        st.image(omage, caption=f'Cartoonized version: {outfile}', use_column_width=True)
+        st.image(omage, caption=f'Cartoonized version: {outfile}')
 
 
 
