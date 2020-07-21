@@ -167,7 +167,7 @@ def main():
         os.system(f"rm -f {outfile}")
 
     st.title('Cartoonify!')
-    infile = st.file_uploader("Choose an image file to cartoonify", type="jpg")
+    infile = st.file_uploader("Choose an image file to cartoonify", type=["png", "jpg", "jpeg"])
 
     if infile is not None:
         image = Image.open(infile)
