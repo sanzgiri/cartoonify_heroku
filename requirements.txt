@@ -1,4 +1,4 @@
 tensorflow==1.12.0
 scikit-image==0.14.5
-opencv-python-headless==4.2.0.32
+opencv-python
 streamlit
